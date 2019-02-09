@@ -2,6 +2,7 @@
 namespace NaiveTemplate;
 
 use NaiveTemplate\Exception\TemplateException;
+use Throwable;
 
 /**
  * This renderer maps a view model to a PHP template with the 
@@ -14,6 +15,7 @@ class Renderer
     public const INVALID_ROOT_PATH = 1;
     public const NAMESPACE_MISMATCH = 2;
     public const MISSING_TEMPLATE = 3;
+    public const TEMPLATE_ERROR = 4;
 
     /**
      * @var string
@@ -80,9 +82,13 @@ class Renderer
 
         ob_start();
 
-        require $template;
-
-        $content = ob_get_clean();
+        try {
+            require $template;
+        } catch (Throwable $e) {
+            throw new TemplateException("Error in template: {$template}", self::TEMPLATE_ERROR, $e);
+        } finally {
+            $content = ob_get_clean();
+        }
 
         return $content;
     }
@@ -91,6 +97,10 @@ class Renderer
     {
         $template = $this->getTemplate($view, $suffix);
 
-        require_once $template;
+        try {
+            require $template;
+        } catch (Throwable $e) {
+            throw new TemplateException("Error in template: {$template}", self::TEMPLATE_ERROR, $e);
+        }
     }
 }

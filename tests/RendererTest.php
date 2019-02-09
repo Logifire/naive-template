@@ -5,17 +5,31 @@ use NaiveTemplate\Exception\TemplateException;
 use NaiveTemplate\Renderer;
 use NaiveTemplate\Test\Model\Admin\Login;
 use NaiveTemplate\Test\Model\MissingTemplate;
+use NaiveTemplate\Test\Model\TemplateError;
 use NaiveTemplate\Test\Model\Welcome;
 use PHPUnit\Framework\TestCase;
 
 class RendererTest extends TestCase
 {
 
-    public function testRenderer()
+    /**
+     * @var Renderer
+     */
+    private $renderer;
+
+    /**
+     * This method is called before each test.
+     */
+    protected function setUp(): void
     {
         $view_namespace = 'NaiveTemplate\Test\Model';
         $template_path = __DIR__ . '/templates';
-        $renderer = new Renderer($view_namespace, $template_path);
+        $this->renderer = new Renderer($view_namespace, $template_path);
+    }
+
+    public function testRenderer()
+    {
+        $renderer = $this->renderer;
         $welcome_view = new Welcome();
         $content_default = $renderer->capture($welcome_view);
         $this->assertSame('Welcome', $content_default);
@@ -40,9 +54,7 @@ class RendererTest extends TestCase
         $this->expectException(TemplateException::class);
         $this->expectExceptionCode(Renderer::NAMESPACE_MISMATCH);
 
-        $view_namespace = 'NaiveTemplate\Test\Model';
-        $template_path = __DIR__ . '/templates';
-        $renderer = new Renderer($view_namespace, $template_path);
+        $renderer = $this->renderer;
 
         $mismatch = new Class {
             
@@ -55,10 +67,18 @@ class RendererTest extends TestCase
         $this->expectException(TemplateException::class);
         $this->expectExceptionCode(Renderer::MISSING_TEMPLATE);
 
-        $view_namespace = 'NaiveTemplate\Test\Model';
-        $template_path = __DIR__ . '/templates';
-        $renderer = new Renderer($view_namespace, $template_path);
+        $renderer = $this->renderer;
         $missing_tpl_view = new MissingTemplate();
         $renderer->capture($missing_tpl_view);
+    }
+
+    public function testTemplateError()
+    {
+        $this->expectException(TemplateException::class);
+        $this->expectExceptionCode(Renderer::TEMPLATE_ERROR);
+
+        $renderer = $this->renderer;
+        $tpl_error_view = new TemplateError();
+        $renderer->capture($tpl_error_view);
     }
 }
