@@ -9,8 +9,11 @@ The default naming of the template files is *.tpl.php, but the suffix can be cha
     $view_namespace = 'NaiveTemplate\Test\Model';
     $template_path = __DIR__ . '/templates';
     $renderer = new Renderer($view_namespace, $template_path);
+    
     $view = new Welcome();
+    
     $content = $renderer->capture($view);
+    
     // $content = $renderer->capture($view, 'en'); If you want to use another suffix
     ... 
 ```
