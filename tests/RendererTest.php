@@ -81,4 +81,28 @@ class RendererTest extends TestCase
         $tpl_error_view = new TemplateError();
         $renderer->capture($tpl_error_view);
     }
+
+    public function testRendererPrint()
+    {
+        $renderer = $this->renderer;
+        $welcome_view = new Welcome();
+
+        ob_start();
+
+        $renderer->print($welcome_view);
+
+        $content_default = ob_get_clean();
+
+        $this->assertSame('Welcome', $content_default);
+    }
+
+    public function testPrintTemplateError()
+    {
+        $this->expectException(TemplateException::class);
+        $this->expectExceptionCode(Renderer::TEMPLATE_ERROR);
+
+        $renderer = $this->renderer;
+        $tpl_error_view = new TemplateError();
+        $renderer->print($tpl_error_view);
+    }
 }
