@@ -1,5 +1,5 @@
 <?php
-namespace NaiveTemplate\Test\Model;
+namespace NanoTemplate\Test\Model;
 
 class Welcome
 {

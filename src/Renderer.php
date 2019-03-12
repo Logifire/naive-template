@@ -1,7 +1,7 @@
 <?php
-namespace NaiveTemplate;
+namespace NanoTemplate;
 
-use NaiveTemplate\Exception\TemplateException;
+use NanoTemplate\Exception\TemplateException;
 use Throwable;
 
 /**

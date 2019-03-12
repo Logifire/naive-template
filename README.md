@@ -1,4 +1,4 @@
-# naive-template
+# nano-template
 
 This template library maps view models to PHP template files.
 The default naming of the template files is *.tpl.php, but the suffix can be changed. Eg. Welcome.en.php and Welcome.de.php, if you want to have templates with different languages.
@@ -6,7 +6,7 @@ The default naming of the template files is *.tpl.php, but the suffix can be cha
 ## Usage
 **Basic**
 ```
-    $view_namespace = 'NaiveTemplate\Test\Model';
+    $view_namespace = 'NanoTemplate\Test\Model';
     $template_path = __DIR__ . '/templates';
     $renderer = new Renderer($view_namespace, $template_path);
     

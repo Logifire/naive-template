@@ -1,5 +1,5 @@
 <?php
-namespace NaiveTemplate\Exception;
+namespace NanoTemplate\Exception;
 
 use RuntimeException;
 

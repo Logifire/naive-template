@@ -1,5 +1,5 @@
 <?php
-namespace NaiveTemplate\Test\Model\Admin;
+namespace NanoTemplate\Test\Model\Admin;
 
 class Login
 {

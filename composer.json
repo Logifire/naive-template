@@ -1,5 +1,5 @@
 {
-    "name": "logifire/naive-template",
+    "name": "logifire/nano-template",
     "description": "Template utility",
     "type": "library",
     "license": "MIT",
@@ -16,12 +16,12 @@
     },
     "autoload": {
         "psr-4": {
-            "NaiveTemplate\\": "src"
+            "NanoTemplate\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NaiveTemplate\\Test\\": "tests"
+            "NanoTemplate\\Test\\": "tests"
         }
     },
     "require-dev": {

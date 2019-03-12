@@ -1,12 +1,12 @@
 <?php
-namespace NaiveTemplate\Test;
+namespace NanoTemplate\Test;
 
-use NaiveTemplate\Exception\TemplateException;
-use NaiveTemplate\Renderer;
-use NaiveTemplate\Test\Model\Admin\Login;
-use NaiveTemplate\Test\Model\MissingTemplate;
-use NaiveTemplate\Test\Model\TemplateError;
-use NaiveTemplate\Test\Model\Welcome;
+use NanoTemplate\Exception\TemplateException;
+use NanoTemplate\Renderer;
+use NanoTemplate\Test\Model\Admin\Login;
+use NanoTemplate\Test\Model\MissingTemplate;
+use NanoTemplate\Test\Model\TemplateError;
+use NanoTemplate\Test\Model\Welcome;
 use PHPUnit\Framework\TestCase;
 
 class RendererTest extends TestCase
@@ -22,7 +22,7 @@ class RendererTest extends TestCase
      */
     protected function setUp(): void
     {
-        $view_namespace = 'NaiveTemplate\Test\Model';
+        $view_namespace = 'NanoTemplate\Test\Model';
         $template_path = __DIR__ . '/templates';
         $this->renderer = new Renderer($view_namespace, $template_path);
     }
@@ -46,7 +46,7 @@ class RendererTest extends TestCase
     {
         $this->expectException(TemplateException::class);
         $this->expectExceptionCode(Renderer::INVALID_ROOT_PATH);
-        new Renderer('NaiveTemplate', '/invalid/path');
+        new Renderer('NanoTemplate', '/invalid/path');
     }
 
     public function testNamespaceMismatch()
