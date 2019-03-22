@@ -87,7 +87,7 @@ class Renderer
         } catch (Throwable $e) {
             throw new TemplateException("Error in template: {$template}", self::TEMPLATE_ERROR, $e);
         } finally {
-            $content = ob_get_clean();
+            $content = ob_get_clean() ?: '';
         }
 
         return $content;
